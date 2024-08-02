@@ -1,6 +1,6 @@
 {
   "name": "autoprefixer",
-  "version": "10.4.14",
+  "version": "10.4.20",
   "description": "Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website",
   "engines": {
     "node": "^10 || ^12 || >=14"
@@ -14,7 +14,10 @@
   ],
   "scripts": {
     "unit": "uvu . '\\.test\\.js$'",
-    "test": "c8 pnpm unit && eslint . bin/* && size-limit"
+    "test:coverage": "c8 pnpm unit",
+    "test:lint": "eslint . bin/*",
+    "test:size": "size-limit",
+    "test": "pnpm run /^test:/"
   },
   "main": "lib/autoprefixer.js",
   "bin": "bin/autoprefixer",
@@ -43,27 +46,22 @@
     "postcss": "^8.1.0"
   },
   "dependencies": {
-    "browserslist": "^4.21.5",
-    "caniuse-lite": "^1.0.30001470",
-    "fraction.js": "^4.2.0",
+    "browserslist": "^4.23.3",
+    "caniuse-lite": "^1.0.30001646",
+    "fraction.js": "^4.3.7",
     "normalize-range": "^0.1.2",
-    "picocolors": "^1.0.0",
+    "picocolors": "^1.0.1",
     "postcss-value-parser": "^4.2.0"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^49.0.0",
-    "@size-limit/preset-small-lib": "8.2.4",
-    "c8": "^7.13.0",
-    "clean-publish": "^4.1.1",
-    "eslint": "^8.36.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.6.1",
-    "eslint-plugin-prefer-let": "^3.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "nanospy": "^0.5.0",
-    "postcss": "^8.4.21",
-    "size-limit": "^8.2.4",
+    "@logux/eslint-config": "^53.2.1",
+    "@size-limit/preset-small-lib": "11.1.4",
+    "c8": "^10.1.2",
+    "clean-publish": "^5.0.0",
+    "eslint": "^9.8.0",
+    "nanospy": "^1.0.0",
+    "postcss": "^8.4.40",
+    "size-limit": "^11.1.4",
     "uvu": "^0.5.6"
   },
   "prettier": {
@@ -76,39 +74,21 @@
   },
   "size-limit": [
     {
-      "limit": "60 KB"
+      "limit": "50 KB"
     }
   ],
-  "eslintConfig": {
-    "extends": "@logux/eslint-config",
-    "rules": {
-      "no-console": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "bin/autoprefixer"
-        ],
-        "rules": {
-          "n/global-require": "off"
-        }
-      },
-      {
-        "files": [
-          "data/prefixes.js"
-        ],
-        "rules": {
-          "import/order": "off"
-        }
-      }
-    ]
-  },
   "c8": {
     "exclude": [
-      "**/*.test.*"
+      "test/*"
     ],
     "lines": 100,
-    "check-coverage": true
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "skip-full": true,
+    "clean": true
   },
   "clean-publish": {
     "cleanDocs": true

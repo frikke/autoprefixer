@@ -1,6 +1,27 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.20
+* Fixed `fit-content` prefix for Firefox.
+
+## 10.4.19
+* Removed `end value has mixed support, consider using flex-end` warning
+  since `end`/`start` now have good support.
+
+## 10.4.18
+* Fixed removing `-webkit-box-orient` on `-webkit-line-clamp` (@Goodwine).
+
+## 10.4.17
+* Fixed `user-select: contain` prefixes.
+
+## 10.4.16
+* Improved performance (by Romain Menke).
+* Fixed docs (by Christian Oliff).
+
+## 10.4.15
+* Fixed `::backdrop` prefixes (by 一丝).
+* Fixed docs (by Christian Oliff).
+
 ## 10.4.14
 * Improved startup time and reduced JS bundle size (by Kārlis Gaņģis).
 
